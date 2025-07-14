@@ -1,0 +1,84 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  height: 100%;
+  background-color: #a3daa6; /* verde chiaro sfondo */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-form {
+  background-color: #e8f5e9; /* verde molto chiaro */
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+  color: #2e7d32; /* verde scuro testo */
+  box-sizing: border-box;
+}
+
+.login-form h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid #4caf50; /* verde brillante */
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #1b5e20; /* verde molto scuro */
+  background-color: #f1f8e9; /* verde chiaro molto tenue */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #388e3c; /* verde intenso */
+  box-shadow: 0 0 5px #81c784;
+  outline: none;
+  background-color: white;
+  color: #1b5e20;
+}
+
+.error-message {
+  background-color: #a5d6a7; /* verde tenue */
+  border: 1px solid #388e3c;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  color: #1b5e20;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.btn-submit {
+  width: 100%;
+  background-color: #4caf50; /* verde brillante */
+  border: none;
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #388e3c; /* verde più scuro */
+}

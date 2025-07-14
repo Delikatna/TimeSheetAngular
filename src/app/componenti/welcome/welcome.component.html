@@ -1,0 +1,14 @@
+<div class="background">
+  <div class="welcome-container">
+    <h1>Benvenuto in TimeSheetProject</h1>
+    <p class="subtitle">Gestione intelligente del tempo per ogni giorno.</p>
+    <div class="cta-buttons">
+      <a routerLink="/login" class="btn btn-login">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </a>
+      <a *ngIf="ruoloHR" routerLink="/registrazione" class="btn btn-register">
+        <i class="bi bi-person-plus-fill"></i> Registrati
+      </a>
+    </div>
+  </div>
+</div>

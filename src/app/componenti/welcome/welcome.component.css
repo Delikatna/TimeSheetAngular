@@ -1,0 +1,80 @@
+:host {
+  display: flex;
+  justify-content: flex-end; /* spinge tutto a destra */
+  align-items: center;
+  height: 100%;
+  flex: 1;
+}
+
+.welcome-container {
+  text-align: center; /* testi allineati a destra */
+  padding: 50px;
+  background-color: transparent;
+  color: #2e7d32;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 600px;
+  margin-left:700px; /* sposta il blocco a destra */
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #1b5e20;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #388e3c;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center; /* bottoni a destra */
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-login {
+  background-color: #43a047;
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+.btn-register {
+  background-color: #ffffff;
+  color: #1b5e20;
+}
+
+.btn-register:hover {
+  background-color: #9dffa2;
+  transform: translateY(-2px);
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://imgur.com/Fxz6ybR.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100%;
+  width: 100%;
+}

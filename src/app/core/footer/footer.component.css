@@ -1,0 +1,12 @@
+.footer {
+  background-color: #ffffff; /* verde chiaro */
+  color: #1b5e20;            /* verde scuro testo */
+  text-align: center;
+  padding: 12px 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  user-select: none;
+  font-size: 0.9rem;
+  /* Evita margini che influenzano il layout */
+  margin: 0;
+}

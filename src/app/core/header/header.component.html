@@ -1,0 +1,32 @@
+<header class="header">
+  <div class="logo">
+    <i class="bi bi-clock-history"></i>
+    <span routerLink="/welcome" class="logo-text">TimeSheetProject</span>
+  </div>
+
+  <nav class="nav">
+    <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+      <a routerLink="/login" class="nav-link">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </a>
+    </ng-container>
+
+    <ng-template #loggedInTemplate>
+      <span class="welcome-text">Benvenuto, {{ nome }} {{ cognome }}!</span>
+
+      <div *ngIf="ruoloHR" class="dropdown">
+        <button class="dropdown-button" (click)="toggleDropdown()">
+          <i class="bi bi-pencil-square"></i> HR Menu <i class="bi bi-caret-down-fill"></i>
+        </button>
+        <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+          <li><a class="dropdown-item" routerLink="/registrazione">Registra utente</a></li>
+          <li><a class="dropdown-item" routerLink="/modifica">Modifica Timbrature</a></li>
+        </ul>
+      </div>
+
+      <a (click)="logout()" class="nav-link logout-link">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+    </ng-template>
+  </nav>
+</header>

@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Registrazione</h2>
+  <form (ngSubmit)="onSubmit()" class="card p-4 shadow-sm">
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" [(ngModel)]="registrazioneData.utente.username" name="username" placeholder="Username" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="registrazioneData.utente.password" name="password" placeholder="Password" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.nome" name="nome" placeholder="Nome" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Cognome</label>
+        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.cognome" name="cognome" placeholder="Cognome" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Sede</label>
+        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.sede" name="sede" placeholder="Sede" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Telefono</label>
+        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.numTelefono" name="numTelefono" placeholder="Telefono" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Data di Nascita</label>
+        <input type="date" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.dob" name="dob" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Mansione</label>
+        <select class="form-select" [(ngModel)]="registrazioneData.anagraficaUtente.mansione" name="mansione" required>
+          <option value="" disabled selected>Seleziona mansione</option>
+          <option value="BACKEND">BackEnd</option>
+          <option value="FRONTEND">FrontEnd</option>
+          <option value="FULLSTACK">FullStack</option>
+          <option value="SISTEMISTA">Sistemista</option>
+          <option value="DEVOPS">Devops</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Registrati</button>
+  </form>
+</div>
