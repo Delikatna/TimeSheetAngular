@@ -23,10 +23,8 @@ export class AuthService {
   this.authStatus.next(status);
 }
 
-    register(data: RegistrazioneDto): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
-    return this.http.post(`${this.apiRegistrazioneUrl}/registrazione`, data, { headers });
+  register(data: RegistrazioneDto): Observable<any> {
+    return this.http.post(`${this.apiRegistrazioneUrl}/registrazione`, data);
   }
 
 
@@ -41,7 +39,7 @@ export class AuthService {
 
       this.setAuthStatus(true); // ora è sicuro emettere il nuovo status
 
-      this.router.navigate(['/']); // o dove vuoi andare
+      this.router.navigate(['/']);
     })
   );
 }

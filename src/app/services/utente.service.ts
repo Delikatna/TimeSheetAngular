@@ -11,7 +11,7 @@ export class UtenteService {
 
   constructor(private http:HttpClient) { }
 
-  private apiUrl='http://localhost:8081/api/hr'
+  private apiUrl='http://localhost:8081/api/public'
 
   getUtenteById(id: string): Observable<AnagraficaUtente> {
   const token = localStorage.getItem('token') || '';
