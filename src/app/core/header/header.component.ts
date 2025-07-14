@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
   this.authService.authStatus$.subscribe(status => {
     this.isLoggedIn = status;
     if (status) {
+      this.ruoloHR = false;
       const id = this.authService.getUserIdFromToken();
       if (id) {
         this.utenteService.getUtenteById(id).subscribe({
@@ -37,12 +38,16 @@ export class HeaderComponent implements OnInit {
             this.cognome = utente.cognome;
             this.ruoloHR = this.authService.hasRole('HR');
           },
-          error: (err) => console.error('Errore nel recupero utente:', err)
+          error: (err) => {
+            console.error('Errore nel recupero utente:', err)
+            this.ruoloHR = false;
+        }
         });
       }
     } else {
       this.nome = '';
       this.cognome = '';
+      this.ruoloHR = false;
     }
   });
 }
