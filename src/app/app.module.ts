@@ -17,7 +17,6 @@ import { CoreModule } from './core/core.module';
     AppComponent,
     RegistrazioneComponent,
     LoginComponent,
-    TimbraturaComponent,
     AccessoNegatoComponent,
     WelcomeComponent
   ],

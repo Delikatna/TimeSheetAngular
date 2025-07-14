@@ -1,10 +1,47 @@
-<button>TIMBRA INGRESSO MATTINA</button> 
-<button>TIMBRA USCITA MATTINA</button> 
-<button>TIMBRA INGRESSO POMERIGGIO</button>
-<button>TIMBRA USCITA POMMERIGGIO</button>
-<button>TIMBRA INGRESSO STRAORDINARIO</button>
-<button>TIMBRA USCITA STRAORDINARIO</button>
-<button>ASEENZA</button>
+<div class="timbrature-wrapper">
+  <div class="timbrature-container">
+    <button class="timbratura-btn"
+      [disabled]="!ingressoMattinaAttivo"
+      (click)="cliccaMattina()">
+      TIMBRA INGRESSO MATTINA
+    </button>
 
+    <button class="timbratura-btn"
+      [disabled]="!ingressoPomeriggioAttivo"
+      (click)="cliccaPomeriggio()">
+      TIMBRA INGRESSO POMERIGGIO
+    </button>
 
+    <button class="timbratura-btn"
+      [disabled]="!ingressoStraordinarioAttivo"
+      (click)="cliccaStraordinario()">
+      TIMBRA INGRESSO STRAORDINARIO
+    </button>
 
+    <button class="timbratura-btn"
+      [disabled]="!uscitaMattinaAttivo"
+      (click)="cliccaMattina()">
+      TIMBRA USCITA MATTINA
+    </button>
+    
+    <button class="timbratura-btn"
+      [disabled]="!uscitaPomeriggioAttivo"
+      (click)="cliccaPomeriggio()">
+      TIMBRA USCITA POMERIGGIO
+    </button>
+
+    
+
+    <button class="timbratura-btn"
+      [disabled]="!uscitaStraordinarioAttivo"
+      (click)="cliccaStraordinario()">
+      TIMBRA USCITA STRAORDINARIO
+    </button>
+
+    <button class="timbratura-btn assenza-btn"
+      [disabled]="!assenzaAttiva"
+      (click)="cliccaAssenza()">
+      ASSENZA
+    </button>
+  </div>
+</div>

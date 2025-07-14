@@ -23,9 +23,12 @@ export class AuthService {
   this.authStatus.next(status);
 }
 
-  register(data: RegistrazioneDto): Observable<any> {
-    return this.http.post(`${this.apiRegistrazioneUrl}/registrazione`, data);
+    register(data: RegistrazioneDto): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+    return this.http.post(`${this.apiRegistrazioneUrl}/registrazione`, data, { headers });
   }
+
 
   login(credentials: AuthRequest): Observable<AuthResponse> {
   return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials).pipe(
