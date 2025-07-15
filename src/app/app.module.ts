@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
@@ -11,7 +10,6 @@ import { AccessoNegatoComponent } from './componenti/accesso-negato/accesso-nega
 import { WelcomeComponent } from './componenti/welcome/welcome.component';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -21,7 +19,8 @@ import { MatListModule } from '@angular/material/list';
 import { MotivazioneDialogComponent } from './componenti/motivazione/motivazione.component';
 import { TimbraturaComponent } from './componenti/timbratura/timbratura.component';
 import { LogsComponent } from './componenti/logs/logs.component';
-
+import { DatiUtenteComponent } from './componenti/dati-utente/dati-utente.component';
+import { ModificaUtenteComponent } from './componenti/modifica-utente/modifica-utente.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,9 @@ import { LogsComponent } from './componenti/logs/logs.component';
     WelcomeComponent,
     MotivazioneDialogComponent,
     TimbraturaComponent,
-    LogsComponent
-    
+    LogsComponent,
+    DatiUtenteComponent,
+    ModificaUtenteComponent
   ],
   imports: [
     BrowserModule,

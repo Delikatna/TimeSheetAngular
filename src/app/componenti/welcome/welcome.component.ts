@@ -14,6 +14,8 @@ export class WelcomeComponent implements OnInit{
     this.ruoloHR = this.authService.hasRole('HR');
   }
   
-
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated(); // questo deve restituire true/false
+  }
 
 }

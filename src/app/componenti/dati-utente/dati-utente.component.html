@@ -1,0 +1,27 @@
+<div class="container mt-4" *ngIf="utente; else erroreTemplate">
+  <h2 class="mb-4">I tuoi dati</h2>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Id:</strong> {{ utente.id }}</li>
+    <li class="list-group-item"><strong>Nome:</strong> {{ utente.nome }}</li>
+    <li class="list-group-item"><strong>Cognome:</strong> {{ utente.cognome }}</li>
+    <li class="list-group-item"><strong>Username:</strong> {{ utente.username }} </li>
+    <li class="list-group-item"><strong>Data di nascita:</strong> {{ utente.dob | date:'dd/MM/yyyy' }}</li>
+    <li class="list-group-item"><strong>Telefono:</strong> {{ utente.numTelefono }}</li>
+    <li class="list-group-item"><strong>Sede:</strong> {{ utente.sede }}</li>
+    <li class="list-group-item"><strong>Mansione:</strong> {{ utente.mansione }}</li>
+  </ul>
+
+    <div class="alert alert-warning" role="alert">
+        Se alcuni dati risultano errati, contatta il reparto HR via email a: 
+        <a href="mailto:hr@azienda.it" class="alert-link">hr&#64;azienda.it</a>.
+    </div>
+</div>
+
+<ng-template #erroreTemplate>
+  <div class="container mt-4">
+    <div class="alert alert-danger" role="alert">
+      {{ errore }}
+    </div>
+  </div>
+</ng-template>
+

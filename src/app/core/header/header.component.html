@@ -14,20 +14,25 @@
     <ng-template #loggedInTemplate>
       <span class="welcome-text">Benvenuto, {{ nome }} {{ cognome }}!</span>
 
-      <div *ngIf="ruoloHR" class="dropdown">
-        <button class="dropdown-button" (click)="toggleDropdown()">
+      <div *ngIf="ruoloHR" class="dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()" [class.show]="dropdownOpen">
+        <button class="dropdown-button">
           <i class="bi bi-pencil-square"></i> HR Menu <i class="bi bi-caret-down-fill"></i>
         </button>
-        <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+        <ul class="dropdown-menu" [class.show]="dropdownOpen" aria-labelledby="dropdownMenuButton">
           <li><a class="dropdown-item" routerLink="/registrazione">Registra utente</a></li>
-          <li><a class="dropdown-item" routerLink="/modifica">Modifica Timbrature</a></li>
           <li><a class="dropdown-item" routerLink="/logs">Storico azioni utente</a></li>
+          <li><a class="dropdown-item" routerLink="/modifica">Modifica timbrature</a></li>
+          <li><a class="dropdown-item" routerLink="/modifica-utente">Modifica dati utente</a></li>
         </ul>
       </div>
 
+      <a (click)="goToDatiUtente()" class="nav-link">
+        <i class="bi bi-person-lines-fill"></i> I tuoi dati
+      </a>
       <a (click)="logout()" class="nav-link logout-link">
         <i class="bi bi-box-arrow-right"></i> Logout
       </a>
+      
     </ng-template>
   </nav>
 </header>

@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   nome='';
   cognome='';
   ruoloHR = false;
-  isDropdownOpen = false;
+  dropdownOpen = false;
 
   constructor(private authService: AuthService, private router: Router,private utenteService:UtenteService) {}
 
@@ -52,10 +52,6 @@ export class HeaderComponent implements OnInit {
   });
 }
 
-toggleDropdown() {
-  this.isDropdownOpen = !this.isDropdownOpen;
-}
-
   logout(): void {
     this.authService.logout();
   }
@@ -63,4 +59,17 @@ toggleDropdown() {
    goToLogin() {
     this.router.navigate(['/login']);
   }
+
+  goToDatiUtente() {
+    this.router.navigate(['/dati-utente']);
+  }
+
+  openDropdown() {
+    this.dropdownOpen = true;
+  }
+
+  closeDropdown() {
+    this.dropdownOpen = false;
+  }
+
 }

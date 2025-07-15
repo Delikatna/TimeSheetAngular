@@ -1,7 +1,7 @@
 /* ---------- Layout base header ---------- */
 .header {
-  background-color: #2e7d32; /* verde scuro */
-  color: #dcedc8;            /* verde chiaro */
+  background-color: #2e7d32; 
+  color: #dcedc8;            
   padding: 12px 24px;
   display: flex;
   justify-content: space-between;

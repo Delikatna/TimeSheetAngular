@@ -1,0 +1,86 @@
+<div class="container my-4">
+  <h3>Gestione utenti</h3>
+
+  <!-- Barra di ricerca -->
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Cerca per nome, cognome o username"
+      [(ngModel)]="termineRicerca"
+      (input)="filtraUtenti()"
+    />
+  </div>
+
+  <!-- Lista utenti -->
+  <div *ngIf="utentiFiltrati.length > 0; else nessunUtente">
+    <span class="list-group mb-4">
+      <span
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let utente of utentiFiltrati"
+        (click)="selezionaUtente(utente)"
+        style="cursor: pointer;"
+      >
+        {{ utente.nome }} {{ utente.cognome}} &nbsp;&nbsp;->  {{utente.username }}
+      </span> 
+    </span>
+  </div>
+
+  <ng-template #nessunUtente>
+    <p>Nessun utente trovato.</p>
+  </ng-template>
+
+  <!-- Form di modifica -->
+  <div *ngIf="utenteSelezionato" class="card p-4">
+     <!-- Pulsante di chiusura -->
+    <button type="button" class="btn btn-close btn-chiudi" aria-label="Chiudi" (click)="chiudiForm()"></button>
+
+    <h5>Modifica anagrafica</h5>
+    <form>
+      <div class="mb-2">
+        <label class="form-label">Nome</label>
+        <input [(ngModel)]="utenteSelezionato.nome" name="nome" class="form-control"/>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Cognome</label>
+        <input [(ngModel)]="utenteSelezionato.cognome" name="cognome" class="form-control"/>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Username</label>
+        <input [(ngModel)]="utenteSelezionato.username" name="username" class="form-control"/>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Data di nascita</label>
+        <input [(ngModel)]="utenteSelezionato.dob" name="dob" class="form-control"/>
+        <p>Data formattata: {{ utenteSelezionato.dob | date:'dd/MM/yyyy' }}</p>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Mansione</label>
+        <select [(ngModel)]="utenteSelezionato.mansione" name="mansione" class="form-control">
+            <option *ngFor="let mansione of mansioniDisponibili" [value]="mansione">
+                {{mansione}}
+            </option>
+      </select>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Sede</label>
+        <input [(ngModel)]="utenteSelezionato.sede" name="sede" class="form-control"/>
+      </div>
+
+      <div class="mb-2">
+        <label class="form-label">Telefono</label>
+        <input [(ngModel)]="utenteSelezionato.numTelefono" name="telefono" class="form-control"/>
+      </div>
+
+      <!-- Altri campi a piacere -->
+
+      <button class="btn btn-primary mt-3" (click)="salvaModifica()">Salva modifiche</button>
+    </form>
+  </div>
+</div>
+

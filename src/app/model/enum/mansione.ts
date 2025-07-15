@@ -1,0 +1,7 @@
+export enum Mansione {
+  FULLSTACK = 'FULLSTACK',
+  BACKEND = 'BACKEND',
+  FRONTEND = 'FRONTEND',
+  SISTEMISTA = 'SISTEMISTA',
+  DEVOPS = 'DEVOPS'
+}

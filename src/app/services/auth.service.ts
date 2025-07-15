@@ -5,13 +5,14 @@ import { RegistrazioneDto } from '../dto/registrazione-dto';
 import { AuthRequest } from '../dto/auth-request-dto';
 import { AuthResponse } from '../dto/auth-response-dto';
 import { Route, Router } from '@angular/router';
+import { AnagraficaUtente } from '../model/anagrafica_utente.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8081/api/auth';
-  private apiRegistrazioneUrl ='http://localhost:8081/api/hr'
+  private apiHrUrl ='http://localhost:8081/api/hr'
   private authStatus = new BehaviorSubject<boolean>(this.isAuthenticated());
   
 
@@ -26,7 +27,7 @@ export class AuthService {
   register(data: RegistrazioneDto): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
-    return this.http.post(`${this.apiRegistrazioneUrl}/registrazione`, data, { headers });
+    return this.http.post(`${this.apiHrUrl}/registrazione`, data, { headers });
   }
 
 
@@ -39,7 +40,7 @@ export class AuthService {
       localStorage.setItem('idUser', response.idUser.toString());
       
 
-      this.setAuthStatus(true); // ora è sicuro emettere il nuovo status
+      this.setAuthStatus(true); 
 
       this.router.navigate(['/']);
     })
@@ -78,9 +79,19 @@ private clearSessionCompletely(): void {
 
 }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+isAuthenticated(): boolean {
+  const token = localStorage.getItem('token');
+  if (!token) return false;
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expiry = payload.exp * 1000; 
+    return Date.now() < expiry;
+  } catch (e) {
+    return false;
   }
+}
+
 
   getUsername(): string {
     return localStorage.getItem('username') || '';
@@ -94,4 +105,17 @@ private clearSessionCompletely(): void {
   const ruolo = localStorage.getItem('role');
   return ruolo === role;
 }
+
+  modificaAnagrafe(data: AnagraficaUtente, id: number): Observable<string> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+    return this.http.post(`${this.apiHrUrl}/aggiorna/${id}`, data, { headers, responseType: 'text' }); //text perché la modifica si aspetta un testo e non un JSON
+  }
+
+  prendiTutteAnagrafe(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+    return this.http.get(`${this.apiHrUrl}/tutte`, { headers });
+  }
+  
 }
