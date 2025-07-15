@@ -7,10 +7,21 @@ import { RegistrazioneComponent } from './componenti/registrazione/registrazione
 import { LoginComponent } from './componenti/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { TimbraturaComponent } from './componenti/timbratura/timbratura.component';
 import { AccessoNegatoComponent } from './componenti/accesso-negato/accesso-negato.component';
 import { WelcomeComponent } from './componenti/welcome/welcome.component';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MotivazioneDialogComponent } from './componenti/motivazione/motivazione.component';
+import { TimbraturaComponent } from './componenti/timbratura/timbratura.component';
+import { LogsComponent } from './componenti/logs/logs.component';
+
 
 @NgModule({
   declarations: [
@@ -18,14 +29,26 @@ import { CoreModule } from './core/core.module';
     RegistrazioneComponent,
     LoginComponent,
     AccessoNegatoComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    MotivazioneDialogComponent,
+    TimbraturaComponent,
+    LogsComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

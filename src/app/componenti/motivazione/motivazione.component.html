@@ -1,0 +1,21 @@
+<!-- Modal personalizzato -->
+<div class="modal fade show" tabindex="-1" [ngClass]="{'d-block': isOpen}" [style.backgroundColor]="isOpen ? 'rgba(0,0,0,0.5)' : 'transparent'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Scegli la motivazione</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="annulla()"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li *ngFor="let motivo of motivazioni" class="list-group-item" (click)="scegli(motivo)">
+            {{ motivo }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" (click)="annulla()">Annulla</button>
+      </div>
+    </div>
+  </div>
+</div>

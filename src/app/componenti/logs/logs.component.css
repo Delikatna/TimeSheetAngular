@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  padding: 20px;
+  background-color: #f0fff4;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.2);
+  margin-top: 80px; /* Distanza dall’header */
+}
+
+/* Titolo */
+.titolo-log {
+  text-align: center;
+  color: #2f855a;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Messaggio "nessun log" */
+div {
+  color: #2f855a;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Lista log */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+li {
+  background-color: #e6fffa;
+  border: 1px solid #38a169;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 8px;
+  color: #22543d;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+li strong {
+  color: #2f855a;
+}

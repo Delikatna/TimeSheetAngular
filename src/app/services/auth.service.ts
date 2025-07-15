@@ -24,7 +24,9 @@ export class AuthService {
 }
 
   register(data: RegistrazioneDto): Observable<any> {
-    return this.http.post(`${this.apiRegistrazioneUrl}/registrazione`, data);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+    return this.http.post(`${this.apiRegistrazioneUrl}/registrazione`, data, { headers });
   }
 
 
