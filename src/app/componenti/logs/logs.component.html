@@ -1,11 +1,19 @@
-<h2 class="titolo-log">Storico delle Azioni</h2>
+<div class="full-center-wrapper">
+<div class="container">
+  <div class="filtro-data">
+    <h1>Storico azioni:</h1><input type="date" (change)="cambiaData($event)" />
+  </div>
 
-<div *ngIf="logs.length === 0">
-  Nessun log disponibile.
+  <ul class="lista-storico">
+    <li *ngFor="let log of storico">
+      {{ log.username }} - {{ log.azione }} - {{ log.timestamp }}
+    </li>
+  </ul>
+
+  <nav class="paginazione">
+    <button (click)="paginaPrecedente()" [disabled]="paginaCorrente === 0">←</button>
+    <span>Pagina {{ paginaCorrente + 1 }} di {{ totalePagine }}</span>
+    <button (click)="paginaSuccessiva()" [disabled]="paginaCorrente >= totalePagine - 1">→</button>
+  </nav>
 </div>
-
-<ul *ngIf="logs.length > 0">
-  <li *ngFor="let log of logs">
-    <strong>{{ log.username }}</strong> - {{ log.azione }} - {{ log.timestamp | date:'short' }}
-  </li>
-</ul>
+</div>

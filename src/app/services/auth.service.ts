@@ -49,23 +49,9 @@ export class AuthService {
 
   logout(): void {
   const token = localStorage.getItem('token');
-  if (token) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.post(`${this.apiUrl}/logout`, {}, { headers }).subscribe({
-      next: () => {
-        this.clearSessionCompletely();
+  this.clearSessionCompletely();
         this.setAuthStatus(false);
-      },
-      error: () => {
-        // Anche in caso di errore, cancella il token localmente
-        this.clearSessionCompletely();
-        this.setAuthStatus(false); 
-      }
-    });
-  } else {
-    this.clearSessionCompletely();
-    this.setAuthStatus(false); 
-  }
+        this.router.navigate(['/welcome']);
 }
 
 private clearSessionCompletely(): void {

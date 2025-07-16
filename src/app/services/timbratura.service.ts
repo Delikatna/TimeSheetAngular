@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
+import { StatoTimbratura } from '../model/stato-timbratura.model';
+import { StoricoTimbrature } from '../model/storico-timbrature';
+import { Page } from '../model/page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +11,9 @@ import { Observable } from 'rxjs/internal/Observable';
 export class TimbraturaService {
   private timbraturaUrl = 'http://localhost:8080/api/timbratura';
   private modificaUrl = 'http://localhost:8080/api/modifica';
-  
+  private baseUrl = 'http://localhost:8080/api';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
@@ -18,32 +21,45 @@ export class TimbraturaService {
       'Authorization': `Bearer ${token}`
     });
   }
-  
-timbraMattina(): Observable<any> {
-  return this.http.post(`${this.timbraturaUrl}/mattina`, {}, { headers: this.getAuthHeaders() });
-}
 
-timbraPomeriggio(): Observable<any> {
-  return this.http.post(`${this.timbraturaUrl}/pomeriggio`, {}, { headers : this.getAuthHeaders() });
-}
+  timbraMattina(): Observable<any> {
+    return this.http.post(`${this.timbraturaUrl}/mattina`, {}, { headers: this.getAuthHeaders() });
+  }
 
-timbraStraordinario(): Observable<any> {
-  return this.http.post(`${this.timbraturaUrl}/straordinario`, {}, { headers: this.getAuthHeaders() });
-}
+  timbraPomeriggio(): Observable<any> {
+    return this.http.post(`${this.timbraturaUrl}/pomeriggio`, {}, { headers: this.getAuthHeaders() });
+  }
 
-timbraAssenza(motivo: string): Observable<any> {
-  const params = new HttpParams().set('motivo', motivo.toUpperCase());
-  return this.http.post(`${this.timbraturaUrl}/assenza`, {}, {
-    headers: this.getAuthHeaders(),
-    params: params
-  });
-}
+  timbraStraordinario(): Observable<any> {
+    return this.http.post(`${this.timbraturaUrl}/straordinario`, {}, { headers: this.getAuthHeaders() });
+  }
 
-getAllLogs(): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.get(`${this.modificaUrl}/timbraturaLog`, { headers });
-}
+  timbraAssenza(motivo: string): Observable<any> {
+    const params = new HttpParams().set('motivo', motivo.toUpperCase());
+    return this.http.post(`${this.timbraturaUrl}/assenza`, {}, {
+      headers: this.getAuthHeaders(),
+      params: params
+    });
+  }
 
+  getStatoTimbratura(): Observable<StatoTimbratura> {
+    return this.http.get<StatoTimbratura>(`${this.timbraturaUrl}/stato`, { headers: this.getAuthHeaders() });
+  }
 
+  getAllLogs(): Observable<any> {
+    return this.http.get(`${this.modificaUrl}/timbraturaLog`, { headers: this.getAuthHeaders() });
+  }
+
+  // Nuovo metodo per ottenere lo storico timbrature paginato e filtrato per data
+  getStoricoPerData(data: string, page: number, size: number): Observable<Page<StoricoTimbrature>> {
+    const params = new HttpParams()
+      .set('data', data)
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<Page<StoricoTimbrature>>(`${this.baseUrl}/storico-timbrature`, {
+      headers: this.getAuthHeaders(),
+      params: params
+    });
+  }
 }

@@ -1,43 +1,50 @@
 <div class="timbrature-wrapper">
   <div class="timbrature-container">
+    <!-- Entrata Mattina -->
     <button class="timbratura-btn m-1"
-      [disabled]="!ingressoMattinaAttivo"
+      [disabled]="statoTimbratura.entrataMattina || statoTimbratura.assenzaSegnata"
       (click)="cliccaMattina()">
       TIMBRA INGRESSO MATTINA
     </button>
 
+    <!-- Entrata Pomeriggio -->
     <button class="timbratura-btn m-1"
-      [disabled]="!ingressoPomeriggioAttivo"
+      [disabled]="statoTimbratura.entrataPomeriggio || statoTimbratura.assenzaSegnata"
       (click)="cliccaPomeriggio()">
       TIMBRA INGRESSO POMERIGGIO
     </button>
 
+    <!-- Entrata Straordinario -->
     <button class="timbratura-btn m-1"
-      [disabled]="!ingressoStraordinarioAttivo"
+      [disabled]="statoTimbratura.entrataStraordinario || statoTimbratura.assenzaSegnata"
       (click)="cliccaStraordinario()">
       TIMBRA INGRESSO STRAORDINARIO
     </button>
 
+    <!-- Uscita Mattina -->
     <button class="timbratura-btn m-1"
-      [disabled]="!uscitaMattinaAttivo"
+      [disabled]="statoTimbratura.uscitaMattina || statoTimbratura.assenzaSegnata"
       (click)="cliccaMattina()">
       TIMBRA USCITA MATTINA
     </button>
 
+    <!-- Uscita Pomeriggio -->
     <button class="timbratura-btn m-1"
-      [disabled]="!uscitaPomeriggioAttivo"
+      [disabled]="statoTimbratura.uscitaPomeriggio || statoTimbratura.assenzaSegnata"
       (click)="cliccaPomeriggio()">
       TIMBRA USCITA POMERIGGIO
     </button>
 
+    <!-- Uscita Straordinario -->
     <button class="timbratura-btn m-1"
-      [disabled]="!uscitaStraordinarioAttivo"
+      [disabled]="statoTimbratura.uscitaStraordinario || statoTimbratura.assenzaSegnata"
       (click)="cliccaStraordinario()">
       TIMBRA USCITA STRAORDINARIO
     </button>
 
+    <!-- Assenza -->
     <button class="timbratura-btn assenza-btn m-1"
-      [disabled]="!assenzaAttiva"
+      [disabled]="statoTimbratura.assenzaSegnata"
       (click)="cliccaAssenza()">
       ASSENZA
     </button>

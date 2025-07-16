@@ -1,47 +1,130 @@
-:host {
-  display: block;
-  padding: 20px;
-  background-color: #f0fff4;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 128, 0, 0.2);
-  margin-top: 80px; /* Distanza dall’header */
+/* Lasciamo html, body com'erano nel tuo blocco */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: block; /* ← importante: rimuove il flex globalmente */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Titolo */
-.titolo-log {
-  text-align: center;
-  color: #2f855a;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+/* Questo wrapper servirà a centrare davvero */
+.full-center-wrapper {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Messaggio "nessun log" */
-div {
-  color: #2f855a;
-  font-weight: bold;
-  font-size: 18px;
-  text-align: center;
-  margin-top: 20px;
+/* Container invariato */
+.container {
+  width: 700px;
+  max-width: 200%;
+  padding: 1.5rem 2rem;
+  background: #e6f2e8;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(46, 125, 50, 0.25);
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
 }
 
-/* Lista log */
-ul {
-  list-style-type: none;
+
+.filtro-data {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between; /* Spinge h1 a sinistra, input a destra */
+  align-items: center;            /* Allineamento verticale */
+}
+
+.filtro-data h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2e7d32;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type="date"] {
+  width: 300px;
+  min-height: 38px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #2e7d32;
+  font-size: 1rem;
+  color: #2e7d32;
+  background-color: white;
+  transition: border-color 0.3s;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+ul.lista-storico {
+  width: 100%;
+  max-height: 1000px;
+  overflow-y: auto;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #2e7d32;
   padding: 0;
-  margin-top: 10px;
+  margin: 0 0 1.5rem 0;
+  list-style: none;
+  flex-grow: 1;
 }
 
-li {
-  background-color: #e6fffa;
-  border: 1px solid #38a169;
+ul.lista-storico li {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #c8e6c9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+  color: #1b5e20;
+}
+
+ul.lista-storico li:last-child {
+  border-bottom: none;
+}
+
+.paginazione {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.paginazione button {
+  min-width: 3rem;
+  min-height: 36px;
+  padding: 0.35rem 0.75rem;
   border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 8px;
-  color: #22543d;
-  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #2e7d32;
+  background-color: white;
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-li strong {
-  color: #2f855a;
+.paginazione button:hover:not(:disabled) {
+  background-color: #2e7d32;
+  color: white;
+}
+
+.paginazione button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.paginazione span {
+  font-weight: 600;
+  color: #2e7d32;
+  font-size: 1rem;
+  white-space: nowrap;
 }

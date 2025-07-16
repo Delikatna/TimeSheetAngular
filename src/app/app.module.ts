@@ -18,9 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MotivazioneDialogComponent } from './componenti/motivazione/motivazione.component';
 import { TimbraturaComponent } from './componenti/timbratura/timbratura.component';
-import { LogsComponent } from './componenti/logs/logs.component';
 import { DatiUtenteComponent } from './componenti/dati-utente/dati-utente.component';
 import { ModificaUtenteComponent } from './componenti/modifica-utente/modifica-utente.component';
+import { StoricoComponent } from './componenti/logs/logs.component';
+
 
 @NgModule({
   declarations: [
@@ -31,9 +32,9 @@ import { ModificaUtenteComponent } from './componenti/modifica-utente/modifica-u
     WelcomeComponent,
     MotivazioneDialogComponent,
     TimbraturaComponent,
-    LogsComponent,
     DatiUtenteComponent,
-    ModificaUtenteComponent
+    ModificaUtenteComponent,
+    StoricoComponent
   ],
   imports: [
     BrowserModule,
