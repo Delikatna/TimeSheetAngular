@@ -19,11 +19,8 @@ const routes: Routes = [
   { path: 'timbratura', component: TimbraturaComponent, canActivate: [AuthGuard] },
   { path: 'registrazione', component: RegistrazioneComponent, canActivate: [AuthGuard]  },
   { path: 'accesso-negato', component: AccessoNegatoComponent },
-<<<<<<< Updated upstream
   { path: 'logs', component: StoricoComponent, canActivate: [AuthGuard] },
-=======
   { path: 'logs', component: LogsComponent, canActivate: [AuthGuard]  },
->>>>>>> Stashed changes
   { path: 'welcome', component: WelcomeComponent },
   { path: 'dati-utente', component: DatiUtenteComponent, canActivate: [AuthGuard] },
   { path: 'modifica-utente', component: ModificaUtenteComponent, canActivate: [AuthGuard] },
