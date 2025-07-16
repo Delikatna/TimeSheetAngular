@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2>Stampa Timesheet</h2>
+
+  <!-- Selezione anno -->
+  <div class="form-group mt-3">
+    <label for="annoSelect">Seleziona anno:</label>
+    <select id="annoSelect" class="form-control w-25" [(ngModel)]="annoSelezionato" name="annoSelect">
+      <option [ngValue]="null" disabled selected>-- Seleziona un anno --</option>
+      <option *ngFor="let anno of anniDisponibili" [value]="anno">
+        {{ anno }}
+      </option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary mt-2" (click)="caricaTimesheet()" [disabled]="!annoSelezionato">
+    Carica Timesheet
+  </button>
+
+  <!-- Messaggio di errore o nessun risultato -->
+  <div *ngIf="messaggio" class="alert alert-info mt-3">
+    {{ messaggio }}
+  </div>
+
+  <!-- Lista dei timesheet trovati -->
+  <div *ngIf="Timesheets.length > 0" class="mt-4">
+    <div *ngFor="let timesheet of Timesheets" class="card mb-2 p-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <strong>Timesheet mese di {{ getNomeMese(timesheet.mese) }}</strong>
+        </div>
+        <button
+          class="btn btn-success"
+          (click)="scaricaExcel(timesheet.mese)"
+        >
+          Scarica Excel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

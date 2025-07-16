@@ -8,17 +8,26 @@ import { AuthGuard } from './guards/auth.guard';
 import { WelcomeComponent } from './componenti/welcome/welcome.component';
 import { DatiUtenteComponent } from './componenti/dati-utente/dati-utente.component';
 import { ModificaUtenteComponent } from './componenti/modifica-utente/modifica-utente.component';
+<<<<<<< Updated upstream
 import { StoricoComponent } from './componenti/logs/logs.component';
+=======
+import { StampaComponent } from './componenti/stampa/stampa.component';
+>>>>>>> Stashed changes
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'timbratura', component: TimbraturaComponent, canActivate: [AuthGuard] },
-  { path: 'registrazione', component: RegistrazioneComponent },
+  { path: 'registrazione', component: RegistrazioneComponent, canActivate: [AuthGuard]  },
   { path: 'accesso-negato', component: AccessoNegatoComponent },
+<<<<<<< Updated upstream
   { path: 'logs', component: StoricoComponent, canActivate: [AuthGuard] },
+=======
+  { path: 'logs', component: LogsComponent, canActivate: [AuthGuard]  },
+>>>>>>> Stashed changes
   { path: 'welcome', component: WelcomeComponent },
   { path: 'dati-utente', component: DatiUtenteComponent, canActivate: [AuthGuard] },
   { path: 'modifica-utente', component: ModificaUtenteComponent, canActivate: [AuthGuard] },
+  { path: 'stampa', component: StampaComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
   

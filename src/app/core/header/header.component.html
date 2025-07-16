@@ -14,11 +14,11 @@
     <ng-template #loggedInTemplate>
       <span class="welcome-text">Benvenuto, {{ nome }} {{ cognome }}!</span>
 
-      <div *ngIf="ruoloHR" class="dropdown" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()" [class.show]="dropdownOpen">
+      <div *ngIf="ruoloHR" class="dropdown" (mouseenter)="openDropdown('hr')" (mouseleave)="closeDropdown('hr')" [class.show]="dropdownStates['hr']">
         <button class="dropdown-button">
           <i class="bi bi-pencil-square"></i> HR Menu <i class="bi bi-caret-down-fill"></i>
         </button>
-        <ul class="dropdown-menu" [class.show]="dropdownOpen" aria-labelledby="dropdownMenuButton">
+        <ul class="dropdown-menu" [class.show]="dropdownStates['hr']">
           <li><a class="dropdown-item" routerLink="/registrazione">Registra utente</a></li>
           <li><a class="dropdown-item" routerLink="/logs">Storico azioni utente</a></li>
           <li><a class="dropdown-item" routerLink="/modifica">Modifica timbrature</a></li>
@@ -26,9 +26,17 @@
         </ul>
       </div>
 
-      <a (click)="goToDatiUtente()" class="nav-link">
-        <i class="bi bi-person-lines-fill"></i> I tuoi dati
-      </a>
+      <div class="dropdownInfo" (mouseenter)="openDropdown('info')" (mouseleave)="closeDropdown('info')" [class.show]="dropdownStates['info']">
+        <button class="dropdown-button">
+          <i class="bi bi-pencil-square"></i> I tuoi dati <i class="bi bi-caret-down-fill"></i>
+        </button>
+        <ul class="dropdown-menu" [class.show]="dropdownStates['info']">
+          <li><a class="dropdown-item" (click)="goToDatiUtente()">Info</a></li>
+          <li><a class="dropdown-item" routerLink="/timbratura">Timbra TimeSheet</a></li>
+          <li><a class="dropdown-item" routerLink="/stampa">Stampa TimeSheet</a></li>
+        </ul>
+      </div>
+
       <a (click)="logout()" class="nav-link logout-link">
         <i class="bi bi-box-arrow-right"></i> Logout
       </a>

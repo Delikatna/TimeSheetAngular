@@ -20,8 +20,12 @@ import { MotivazioneDialogComponent } from './componenti/motivazione/motivazione
 import { TimbraturaComponent } from './componenti/timbratura/timbratura.component';
 import { DatiUtenteComponent } from './componenti/dati-utente/dati-utente.component';
 import { ModificaUtenteComponent } from './componenti/modifica-utente/modifica-utente.component';
+<<<<<<< Updated upstream
 import { StoricoComponent } from './componenti/logs/logs.component';
 
+=======
+import { StampaComponent } from './componenti/stampa/stampa.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { StoricoComponent } from './componenti/logs/logs.component';
     TimbraturaComponent,
     DatiUtenteComponent,
     ModificaUtenteComponent,
+<<<<<<< Updated upstream
     StoricoComponent
+=======
+    StampaComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

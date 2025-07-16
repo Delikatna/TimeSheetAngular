@@ -17,12 +17,13 @@ export class HeaderComponent implements OnInit {
   nome='';
   cognome='';
   ruoloHR = false;
-  dropdownOpen = false;
+  
+  dropdownStates: Record<string, boolean> = {
+    hr: false,
+    info: false
+  };
 
   constructor(private authService: AuthService, private router: Router,private utenteService:UtenteService) {}
-
-
-
 
   ngOnInit(): void {
   this.authService.authStatus$.subscribe(status => {
@@ -64,12 +65,13 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/dati-utente']);
   }
 
-  openDropdown() {
-    this.dropdownOpen = true;
+  openDropdown(key: string) {
+    this.dropdownStates[key] = true;
   }
 
-  closeDropdown() {
-    this.dropdownOpen = false;
+  closeDropdown(key: string) {
+    this.dropdownStates[key] = false;
   }
+  
 
 }
