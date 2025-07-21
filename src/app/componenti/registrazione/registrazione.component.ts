@@ -15,6 +15,7 @@ export class RegistrazioneComponent {
     utente: {
       username: '',
       password: '',
+      email: '',
       ruolo: 'USER'
     },
     anagraficaUtente: {

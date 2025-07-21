@@ -3,5 +3,6 @@ export interface Utente
   id?: number;
   username: string;
   password: string;
-  ruolo: string; 
+  ruolo: string;
+  email: string; 
 }

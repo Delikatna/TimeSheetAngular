@@ -2,7 +2,18 @@
   <h2 class="text-center mb-4">Registrazione</h2>
   <form (ngSubmit)="onSubmit()" class="card p-4 shadow-sm">
 
+    
     <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.nome" name="nome" placeholder="Nome" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Cognome</label>
+        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.cognome" name="cognome" placeholder="Cognome" required>
+      </div>
+
       <div class="col-md-6 mb-3">
         <label class="form-label">Username</label>
         <input type="text" class="form-control" [(ngModel)]="registrazioneData.utente.username" name="username" placeholder="Username" required>
@@ -14,13 +25,8 @@
       </div>
 
       <div class="col-md-6 mb-3">
-        <label class="form-label">Nome</label>
-        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.nome" name="nome" placeholder="Nome" required>
-      </div>
-
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Cognome</label>
-        <input type="text" class="form-control" [(ngModel)]="registrazioneData.anagraficaUtente.cognome" name="cognome" placeholder="Cognome" required>
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" [(ngModel)]="registrazioneData.utente.email" name="email" placeholder="Email" required>
       </div>
 
       <div class="col-md-6 mb-3">
