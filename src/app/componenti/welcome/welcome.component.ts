@@ -8,14 +8,18 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class WelcomeComponent implements OnInit{
   ruoloHR = false;
+  isLoggedIn = false;
   
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService) {}
+
   ngOnInit(): void {
+
     this.ruoloHR = this.authService.hasRole('HR');
+    
+    this.authService.authStatus$.subscribe( status => {
+      this.isLoggedIn = status;
+    });
   }
   
-  isAuthenticated(): boolean {
-    return this.authService.isAuthenticated(); // questo deve restituire true/false
-  }
 
 }

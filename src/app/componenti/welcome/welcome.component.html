@@ -2,13 +2,16 @@
   <div class="welcome-container">
     <h1>Benvenuto in TimeSheetProject</h1>
     <p class="subtitle">Gestione intelligente del tempo per ogni giorno.</p>
-    <div *ngIf="" class="cta-buttons">
-      <a routerLink="/login" class="btn btn-login">
-        <i class="bi bi-box-arrow-in-right"></i> Login
+    <div class="cta-buttons">
+      <a *ngIf="isLoggedIn; else notLoggedIn" routerLink="/timbratura" class="btn btn-timbro" title="timbrare">
+        <i class="bi bi-box-arrow-in-right"></i> Vai a timbrare!
       </a>
-      <a *ngIf="ruoloHR" routerLink="/registrazione" class="btn btn-register">
-        <i class="bi bi-person-plus-fill"></i> Registrati
-      </a>
+
+      <ng-template #notLoggedIn>
+        <a routerLink="/login" class="btn btn-login" title="login">
+          <i class="bi bi-box-arrow-in-right"></i> Login
+        </a>
+      </ng-template>
     </div>
   </div>
 </div>

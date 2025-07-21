@@ -1,75 +1,201 @@
 :host {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 3rem;
-  height: 100%;
-  background-color: #a3daa6; /* verde chiaro sfondo */
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  background-color: #a3daa6;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
 }
 
 .timbrature-wrapper {
   width: 100%;
-  max-width: 80%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.timbrature-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  width: 100%;
-}
-
-/* Bottoni base più grandi */
-.timbratura-btn {
-  background-color: #4caf50; /* verde brillante */
-  color: white;
-  border: none;
+.stepper {
+  background: #4a8d4d;
   border-radius: 12px;
-  font-weight: 700;
-  font-size: 1.25rem; /* font più grande */
-  cursor: pointer;
-  padding: 18px 0; /* padding verticale aumentato */
-  width: 100%;
-  box-shadow: 0 5px 8px rgba(76, 175, 80, 0.5);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Icona verde con check per step completati */
+::ng-deep .mat-step-header.mat-completed .mat-step-icon {
+  background-color: #4CAF50 !important; /* Verde più brillante */
+  color: white !important;
+}
+
+/* Icona per step non completati (grigio) */
+::ng-deep .mat-step-header:not(.mat-completed) .mat-step-icon {
+  background-color: #e0e0e0 !important;
+  color: #757575 !important;
+}
+
+/* Icona per lo step attualmente attivo */
+::ng-deep .mat-step-header[aria-selected="true"] .mat-step-icon {
+  background-color: #4caf50 !important; 
+  color: white !important;
+}
+
+/* Rimuove il numero di default dall'icona */
+::ng-deep .mat-step-icon-content {
+    display: none;
+}
+
+.step-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65px; /* altezza aumentata */
+  padding: 2.5rem 0;
+  min-height: 120px;
+}
+
+.testo-completato {
+    font-size: 1.2rem;
+    color: #ebdfdf;
+    font-weight: 500;
+}
+
+.azioni-speciali-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.timbratura-btn, .straordinario-btn, .assenza-btn {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 14px 10px;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timbratura-btn {
+  background: linear-gradient(135deg, #1b5e20, #1b5e20);
+  color: #fff;
+}
+
+.timbratura-btn:hover {
+  background: linear-gradient(135deg, #3c9940);
+  color: #fff;
 }
 
 .timbratura-btn:hover:not(:disabled) {
-  background-color: #388e3c; /* verde più scuro */
-  box-shadow: 0 7px 14px rgba(56, 142, 60, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.timbratura-btn:disabled {
-  background-color: #ccc; /* grigio chiaro */
-  color: #666;
-  cursor: not-allowed;
-  opacity: 0.6;
-  box-shadow: none;
-  pointer-events: none;
+.straordinario-btn {
+  background-color: #ff9800;
+  color: #fff;
 }
 
-/* Bottone assenza più grande */
+.straordinario-btn:hover {
+  background-color: #cf7d02;
+  color: #fff;
+}
+
 .assenza-btn {
-  background-color: #c62828; /* rosso intenso */
-  color: white;
-  grid-column: 1 / -1;
-  justify-self: center;
-  max-width: 400px;
-  box-shadow: 0 5px 10px rgba(198, 40, 40, 0.6);
-  border-radius: 14px;
-  height: 65px; /* altezza aumentata */
-  font-size: 1.4rem; /* font più grande */
-  font-weight: 800;
-  padding: 18px 0;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f44336;
+  color: #fff;
+  grid-column: 1 / -1; /* Occupa tutta la larghezza */
+  margin-top: 0.5rem;
 }
 
-.assenza-btn:hover:not(:disabled) {
-  background-color: #e53935; /* rosso più chiaro */
-  box-shadow: 0 8px 16px rgba(229, 57, 53, 0.8);
+.messaggio-orario-auto, .messaggio-assenza {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease-in-out;
+  text-align: center;
 }
+
+.messaggio-assenza {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 768px) {
+  .azioni-speciali-container {
+    grid-template-columns: 1fr;
+  }
+  .assenza-btn {
+      margin-top: 0;
+  }
+  .timbratura-btn, .straordinario-btn, .assenza-btn {
+    font-size: 0.9rem;
+  }
+}
+
+.straordinario-btn:disabled {
+  background-color: #b0b0b0; 
+  color: #444;             
+  cursor: not-allowed;      
+  opacity: 1;                
+}
+
+.straordinario-btn:disabled:hover {
+  background-color: #999;
+}
+
+::ng-deep .mat-step-header:not([aria-selected="true"]) {
+  pointer-events: none;
+  cursor: default !important;
+}
+
+::ng-deep .mat-step-header[aria-selected="true"] {
+  background-color: #337e37 !important;
+  border-radius: 999px !important; /* Forma pillola */
+  padding: 4px 12px !important; /* Ridotto rispetto al default */
+  min-height: 32px !important;
+  height: auto !important;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 0.85rem !important; /* Testo leggermente più piccolo */
+}
+
+::ng-deep .mat-step-header[aria-selected="true"]:hover {
+  background-color: #235126 !important; 
+}
+
+.step-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 0;
+  min-height: 120px;
+
+  animation: fadeStep 0.5s ease-in-out;
+}
+
+@keyframes fadeStep {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+

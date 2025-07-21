@@ -47,12 +47,12 @@ h1 {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-login {
+.btn-login, .btn-timbro {
   background-color: #43a047;
   color: white;
 }
 
-.btn-login:hover {
+.btn-login, .btn-timbro:hover {
   background-color: #388e3c;
   transform: translateY(-2px);
 }

@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     return this.router.createUrlTree(['/accesso-negato']);
   }
 
-  const expectedRoles = route.data['roles'] as Array<string> | undefined;
+  const expectedRoles = route.data['ruoli'] as Array<string> | undefined;
   if (!expectedRoles || expectedRoles.length === 0) {
     return true; // nessun controllo ruolo, basta essere autenticati
   }

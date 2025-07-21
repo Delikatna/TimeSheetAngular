@@ -22,13 +22,15 @@ export class TimbraturaService {
     });
   }
 
-  timbraMattina(): Observable<any> {
-    return this.http.post(`${this.timbraturaUrl}/mattina`, {}, { headers: this.getAuthHeaders() });
+  timbraGenerale(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
+    return this.http.post(`${this.timbraturaUrl}/timbra`, {} , { headers });
   }
 
-  timbraPomeriggio(): Observable<any> {
-    return this.http.post(`${this.timbraturaUrl}/pomeriggio`, {}, { headers: this.getAuthHeaders() });
-  }
+  // timbraPomeriggio(): Observable<any> {
+  //   return this.http.post(`${this.timbraturaUrl}/pomeriggio`, {}, { headers: this.getAuthHeaders() });
+  // }
 
   timbraStraordinario(): Observable<any> {
     return this.http.post(`${this.timbraturaUrl}/straordinario`, {}, { headers: this.getAuthHeaders() });

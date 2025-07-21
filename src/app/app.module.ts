@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
 import { LoginComponent } from './componenti/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccessoNegatoComponent } from './componenti/accesso-negato/accesso-negato.component';
 import { WelcomeComponent } from './componenti/welcome/welcome.component';
@@ -24,6 +24,8 @@ import { StoricoComponent } from './componenti/logs/logs.component';
 import { StampaComponent } from './componenti/stampa/stampa.component';
 import { TimesheetMensileComponent } from './componenti/timesheet-mensile/timesheet-mensile.component';
 import { AssenzaComponent } from './componenti/assenza/assenza.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -51,10 +53,13 @@ import { AssenzaComponent } from './componenti/assenza/assenza.component';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule,
     MatIconModule,
     FormsModule,
-    MatListModule
+    MatListModule,
+    MatStepperModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

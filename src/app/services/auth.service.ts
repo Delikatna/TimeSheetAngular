@@ -58,11 +58,8 @@ private clearSessionCompletely(): void {
   // Pulisce tutto il localStorage
   localStorage.clear();
 
-  // Se usi sessionStorage
+  // Se si usa il sessionStorage
   sessionStorage.clear();
-
-  this.router.navigate(['/login']);
-
 }
 
 isAuthenticated(): boolean {

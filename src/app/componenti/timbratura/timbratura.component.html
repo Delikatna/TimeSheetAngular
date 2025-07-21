@@ -1,54 +1,45 @@
 <div class="timbrature-wrapper">
-  <div class="timbrature-container">
-    <!-- Entrata Mattina -->
-    <button class="timbratura-btn m-1"
-      [disabled]="statoTimbratura.entrataMattina || statoTimbratura.assenzaSegnata"
-      (click)="cliccaMattina()">
-      TIMBRA INGRESSO MATTINA
-    </button>
+  <!--
+    Rimosso [linear]="true" per permettere il salto programmatico agli step successivi.
+    Mantenuto [editable]="false" in ogni step per impedire la navigazione manuale.
+  -->
+  <mat-horizontal-stepper [selectedIndex]="stepCorrente" class="stepper" (selectionChange)="onStepChange($event)">
+    <mat-step *ngFor="let label of stepLabels; let i = index" [completed]="stepCompleted(i)" [editable]="false">
+      <ng-template matStepLabel>
+        {{ label }}
+      </ng-template>
 
-    <!-- Entrata Pomeriggio -->
-    <button class="timbratura-btn m-1"
-      [disabled]="statoTimbratura.entrataPomeriggio || statoTimbratura.assenzaSegnata"
-      (click)="cliccaPomeriggio()">
-      TIMBRA INGRESSO POMERIGGIO
-    </button>
+      <!-- Il contenuto dello step (pulsante) viene mostrato solo se è lo step correntemente attivo -->
+      <div class="step-content" *ngIf="i === stepCorrente && !statoTimbratura.assenzaSegnata && stepCorrente < stepLabels.length">
+        <button
+          class="timbratura-btn" (click)="timbraStep()">
+          TIMBRA {{ label | uppercase }}
+        </button>
+      </div>
+    </mat-step>
 
-    <!-- Entrata Straordinario -->
-    <button class="timbratura-btn m-1"
-      [disabled]="statoTimbratura.entrataStraordinario || statoTimbratura.assenzaSegnata"
-      (click)="cliccaStraordinario()">
-      TIMBRA INGRESSO STRAORDINARIO
-    </button>
+    <!-- Step finale di riepilogo quando tutte le timbrature sono completate -->
+    <mat-step [editable]="false">
+        <ng-template matStepLabel>Completato</ng-template>
+        <div class="step-content">
+            <p class="testo-completato">Giornata lavorativa conclusa. Tutte le timbrature sono state effettuate.</p>
+        </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 
-    <!-- Uscita Mattina -->
-    <button class="timbratura-btn m-1"
-      [disabled]="statoTimbratura.uscitaMattina || statoTimbratura.assenzaSegnata"
-      (click)="cliccaMattina()">
-      TIMBRA USCITA MATTINA
-    </button>
-
-    <!-- Uscita Pomeriggio -->
-    <button class="timbratura-btn m-1"
-      [disabled]="statoTimbratura.uscitaPomeriggio || statoTimbratura.assenzaSegnata"
-      (click)="cliccaPomeriggio()">
-      TIMBRA USCITA POMERIGGIO
-    </button>
-
-    <!-- Uscita Straordinario -->
-    <button class="timbratura-btn m-1"
-      [disabled]="statoTimbratura.uscitaStraordinario || statoTimbratura.assenzaSegnata"
-      (click)="cliccaStraordinario()">
-      TIMBRA USCITA STRAORDINARIO
-    </button>
-
-    <!-- Assenza -->
-    <button class="timbratura-btn assenza-btn m-1"
-      [disabled]="statoTimbratura.assenzaSegnata"
-      (click)="cliccaAssenza()">
-      ASSENZA
-    </button>
+  <!-- Messaggio temporaneo per notifiche automatiche -->
+  <div *ngIf="mostraMessaggioOrarioAuto" class="messaggio-orario-auto">
+    {{ messaggioOrarioAuto }}
   </div>
-</div>
 
-<app-motivazione-dialog (chiuso)="onMotivazioneScelta($event)"></app-motivazione-dialog>
+  <!-- Pulsanti per azioni speciali come Straordinario e Assenza -->
+  <div class="azioni-speciali-container">
+     <button class="straordinario-btn" (click)="cliccaStraordinario()" [disabled]="statoTimbratura.entrataStraordinario">
+       TIMBRA INGRESSO STRAORDINARIO
+     </button>
+     <button class="straordinario-btn" (click)="cliccaStraordinario()" [disabled]="statoTimbratura.uscitaStraordinario">
+       TIMBRA USCITA STRAORDINARIO
+     </button>
+  </div>
+
+</div>

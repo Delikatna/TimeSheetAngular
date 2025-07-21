@@ -16,7 +16,7 @@
 
       <div *ngIf="ruoloHR" class="dropdown" (mouseenter)="openDropdown('hr')" (mouseleave)="closeDropdown('hr')" [class.show]="dropdownStates['hr']">
         <button class="dropdown-button">
-          <i class="bi bi-pencil-square"></i> HR Menu <i class="bi bi-caret-down-fill"></i>
+          <i class="bi bi-person-lines-fill"></i> HR Menu <i class="bi bi-caret-down-fill"></i>
         </button>
         <ul class="dropdown-menu" [class.show]="dropdownStates['hr']">
           <li><a class="dropdown-item" routerLink="/registrazione">Registra utente</a></li>
@@ -28,7 +28,7 @@
 
       <div class="dropdownInfo" (mouseenter)="openDropdown('info')" (mouseleave)="closeDropdown('info')" [class.show]="dropdownStates['info']">
         <button class="dropdown-button">
-          <i class="bi bi-pencil-square"></i> I tuoi dati <i class="bi bi-caret-down-fill"></i>
+          <i class="bi bi-person-vcard"></i> Area Personale <i class="bi bi-caret-down-fill"></i>
         </button>
         <ul class="dropdown-menu" [class.show]="dropdownStates['info']">
           <li><a class="dropdown-item" (click)="goToDatiUtente()">Info</a></li>

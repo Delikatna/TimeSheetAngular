@@ -1,14 +1,26 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7f6; /* bianco-grigio */
+  background-color: #f4f7f6;
   color: #333;
   line-height: 1.6;
-  margin: 0; /* evita scroll indesiderati */
-  height: 100vh; /* usa tutta l’altezza */
+  margin: 0;
+  height: 100vh;
+}
+
+.titolo-accesso {
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 1rem;
+}
+
+.messaggio-accesso {
+  color: #555;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 1.5rem;
 }
 
 .straordinario-btn {
-  background-color: #ff9800; /* arancione */
+  background-color: #ff9800;
   color: #fff;
   border: none;
   padding: 12px 25px;
@@ -19,10 +31,10 @@ body {
   width: 100%;
   max-width: 250px;
   display: block;
-  margin: 0 auto; /* centra bottone */
+  margin: 0 auto;
 }
 
 .straordinario-btn:hover {
-  background-color: #cf7d02; /* arancione più scuro */
+  background-color: #cf7d02;
   transform: translateY(-2px);
 }

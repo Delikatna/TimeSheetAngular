@@ -13,6 +13,7 @@ export class UtenteService {
 
   private apiUrl='http://localhost:8081/api/public';
   private apiUtenteUrl = 'http://localhost:8081/api/utente';
+  private utenteUrl = 'http://localhost:8080/api/utente';
 
   getUtenteById(id: string): Observable<AnagraficaUtente> {
   const token = localStorage.getItem('token') || '';
@@ -29,4 +30,10 @@ export class UtenteService {
   });
   return this.http.get<UtenteEAnagraficaDto>(`${this.apiUtenteUrl}/${id}`, { headers });
 }
+
+  getNomeCognome(id:string): Observable<{nome: string, cognome: string}> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<UtenteEAnagraficaDto>(`${this.utenteUrl}/nome/cognome/${id}`, { headers });
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { TimesheetService } from 'src/app/services/timesheet.service';
+import { UtenteService } from 'src/app/services/utente.service';
 
 @Component({
   selector: 'app-stampa',
@@ -12,8 +14,10 @@ export class StampaComponent implements OnInit {
   annoSelezionato: number | null = null;
   Timesheets: any[] = [];
   messaggio: string = '';
+  id: number = 0;
+  nomeCognome: string = '';
 
-  constructor(private timesheetService: TimesheetService) {}
+  constructor(private timesheetService: TimesheetService, private utenteService: UtenteService, private authService: AuthService) {}
   
   ngOnInit(): void {
     const annoInizio = 2017;
@@ -39,33 +43,40 @@ export class StampaComponent implements OnInit {
     });
   }
 
-  scaricaExcel(mese:number): void {
-    if(!this.annoSelezionato)
-      return;
+  scaricaExcel(mese: number): void {
+  if (!this.annoSelezionato) 
+    return;
 
-    this.timesheetService.downloadTimesheet(this.annoSelezionato,mese).subscribe({
-      next: (blob: Blob) => {
-        const nomeFile = `timesheet_${this.annoSelezionato}_${mese}.xlsx`;
+  const id = this.authService.getUserIdFromToken();
 
-        // viene creato un url per il blob
-        const blobUrl = window.URL.createObjectURL(blob);
+  this.utenteService.getNomeCognome(id).subscribe({
+    next: (data) => {
+      this.nomeCognome = `${data.nome}_${data.cognome}`;
 
-        // usiamo un elemento 'a' temporaneo
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = nomeFile;
-        document.body.appendChild(a);
-        a.click();
+      this.timesheetService.downloadTimesheet(this.annoSelezionato!, mese).subscribe({
+        next: (blob: Blob) => {
+          const nomeFile = `timesheet_${this.nomeCognome}_${this.annoSelezionato}_${mese}.xlsx`;
 
-        // puliamo il DOM e la memoria del blob
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(blobUrl);
-      },
-      error: (err) => {
-        this.messaggio = 'Errore durnte il download del file';
-      }
-    });
-  }
+          const blobUrl = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = blobUrl;
+          a.download = nomeFile;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(blobUrl);
+        },
+        error: () => {
+          this.messaggio = 'Errore durante il download del file';
+        }
+      });
+    },
+    error: () => {
+      this.messaggio = 'Errore nel recupero dei dati utente';
+    }
+  });
+}
+
 
   getNomeMese(mese:number): string {
     const date = new Date();

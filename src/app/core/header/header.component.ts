@@ -17,13 +17,14 @@ export class HeaderComponent implements OnInit {
   nome='';
   cognome='';
   ruoloHR = false;
+  isLoggedOut = false;
   
   dropdownStates: Record<string, boolean> = {
     hr: false,
     info: false
   };
 
-  constructor(private authService: AuthService, private router: Router,private utenteService:UtenteService) {}
+  constructor(private authService: AuthService, private router: Router,private utenteService: UtenteService) {}
 
   ngOnInit(): void {
   this.authService.authStatus$.subscribe(status => {
