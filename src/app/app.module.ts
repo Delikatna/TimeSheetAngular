@@ -22,6 +22,8 @@ import { DatiUtenteComponent } from './componenti/dati-utente/dati-utente.compon
 import { ModificaUtenteComponent } from './componenti/modifica-utente/modifica-utente.component';
 import { StoricoComponent } from './componenti/logs/logs.component';
 import { StampaComponent } from './componenti/stampa/stampa.component';
+import { TimesheetMensileComponent } from './componenti/timesheet-mensile/timesheet-mensile.component';
+import { AssenzaComponent } from './componenti/assenza/assenza.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { StampaComponent } from './componenti/stampa/stampa.component';
     DatiUtenteComponent,
     ModificaUtenteComponent,
     StoricoComponent,
-    StampaComponent
+    StampaComponent,
+    TimesheetMensileComponent,
+    AssenzaComponent,
   ],
   imports: [
     BrowserModule,

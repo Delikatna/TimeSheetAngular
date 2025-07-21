@@ -1,0 +1,88 @@
+/* General Body and Container Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6; /* bianco-grigio */
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings and Paragraphs */
+h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Straordinario Button Styles */
+.straordinario-btn {
+  background-color: #ff9800; /* arancione */
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%; /* Make buttons full width in the grid */
+}
+
+.straordinario-btn:hover {
+  background-color: #cf7d02; /* arancione darker on hover */
+  transform: translateY(-2px);
+}
+
+.straordinario-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Motivi Buttons Container */
+.motivi-buttons {
+  display: grid; /* Use grid for better button layout */
+  gap: 15px; /* Spacing between buttons */
+}
+
+/* Feedback Messages */
+.feedback-message {
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.feedback-message p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.feedback-message.success {
+  background-color: #e6ffe6;
+  color: #28a745; /* Bootstrap success green */
+  border: 1px solid #28a745;
+}
+
+.feedback-message.error {
+  background-color: #ffe6e6;
+  color: #dc3545; /* Bootstrap danger red */
+  border: 1px solid #dc3545;
+}
+
+.feedback-message p.text-info { /* Styling for the loading message */
+    color: #17a2b8;
+}

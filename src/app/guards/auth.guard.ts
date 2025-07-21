@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -9,11 +9,23 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(): boolean | UrlTree {
-    if (this.authService.isAuthenticated()) {
-      return true;
-    } else {
-      return this.router.createUrlTree(['/accesso-negato']);
-    }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+  if (!this.authService.isAuthenticated()) {
+    return this.router.createUrlTree(['/accesso-negato']);
   }
+
+  const expectedRoles = route.data['roles'] as Array<string> | undefined;
+  if (!expectedRoles || expectedRoles.length === 0) {
+    return true; // nessun controllo ruolo, basta essere autenticati
+  }
+
+  // controlla se il ruolo utente è uno di quelli attesi
+  const hasRole = expectedRoles.some(role => this.authService.hasRole(role));
+
+  if (!hasRole) {
+    return this.router.createUrlTree(['/accesso-non-autorizzato']);
+  }
+
+  return true;
+}
 }

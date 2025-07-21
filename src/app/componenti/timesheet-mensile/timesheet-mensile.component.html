@@ -1,0 +1,156 @@
+<div class="container py-2">
+  <div class="card shadow-lg mt-4 p-2 custom-card-bg">
+    <h2 class="text-center mb-3 text-success custom-heading">Timesheet Mensile</h2>
+
+    <form (ngSubmit)="caricaTimesheetPerUtente()" #formRicerca="ngForm" class="mb-3">
+      <div class="row g-2 justify-content-center align-items-end">
+        <div class="col-auto">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="form-control custom-input p-1"
+            [(ngModel)]="username"
+            name="username"
+            required
+          />
+        </div>
+
+        <div class="col-auto">
+          <label for="anno" class="form-label">Anno</label>
+          <input
+            type="number"
+            id="anno"
+            class="form-control custom-input p-1"
+            [(ngModel)]="anno"
+            name="anno"
+            required
+          />
+        </div>
+
+        <div class="col-auto">
+          <label for="mese" class="form-label">Mese</label>
+          <input
+            type="number"
+            id="mese"
+            class="form-control custom-input p-1"
+            [(ngModel)]="mese"
+            name="mese"
+            required
+            min="1"
+            max="12"
+          />
+        </div>
+
+        <div class="col-auto d-flex gap-2">
+          <button type="submit" class="btn btn-success custom-btn py-1 px-3">Cerca</button>
+          <button
+            type="button"
+            class="btn btn-primary custom-btn-outline py-1 px-3"
+            (click)="scaricaExcel(timesheet?.id)"
+          >
+            Scarica
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="!timesheet" class="alert alert-info mt-3 text-center" role="alert">
+      Caricamento del timesheet...
+    </div>
+
+    <div *ngIf="timesheet" class="table-responsive mt-3 custom-table-wrapper">
+      <table class="table table-bordered table-striped table-hover align-middle text-center custom-table">
+        <thead class="table-success custom-thead">
+          <tr>
+            <th>Data</th>
+            <th>Entrata Mattina</th>
+            <th>Uscita Mattina</th>
+            <th>Entrata Pomeriggio</th>
+            <th>Uscita Pomeriggio</th>
+            <th>Entrata Straordinario</th>
+            <th>Uscita Straordinario</th>
+            <th>Motivo</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let giorno of timesheet.giorni; trackBy: trackById">
+            <tr>
+              <td>{{ giorno.data }}</td>
+              <td>
+                <ng-container *ngIf="editingRowId === giorno.id">
+                  <input type="time" [(ngModel)]="rowInEdit!.entrataMattina" class="form-control form-control-sm p-1" />
+                </ng-container>
+                <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.entrataMattina || '-' }}</span>
+                </ng-container>
+              </td>
+              <td>
+                <ng-container *ngIf="editingRowId === giorno.id">
+                  <input type="time" [(ngModel)]="rowInEdit!.uscitaMattina" class="form-control form-control-sm p-1" />
+                </ng-container>
+                <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.uscitaMattina || '-' }}</span>
+                </ng-container>
+              </td>
+              <td>
+                <ng-container *ngIf="editingRowId === giorno.id">
+                  <input type="time" [(ngModel)]="rowInEdit!.entrataPomeriggio" class="form-control form-control-sm p-1" />
+                </ng-container>
+                <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.entrataPomeriggio || '-' }}</span>
+                </ng-container>
+              </td>
+              <td>
+                <ng-container *ngIf="editingRowId === giorno.id">
+                  <input type="time" [(ngModel)]="rowInEdit!.uscitaPomeriggio" class="form-control form-control-sm p-1" />
+                </ng-container>
+                <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.uscitaPomeriggio || '-' }}</span>
+                </ng-container>
+              </td>
+              <td>
+                <ng-container *ngIf="editingRowId === giorno.id">
+                  <input type="time" [(ngModel)]="rowInEdit!.entrataStraordinario" class="form-control form-control-sm p-1" />
+                </ng-container>
+                <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.entrataStraordinario || '-' }}</span>
+                </ng-container>
+              </td>
+              <td>
+                <ng-container *ngIf="editingRowId === giorno.id">
+                  <input type="time" [(ngModel)]="rowInEdit!.uscitaStraordinario" class="form-control form-control-sm p-1" />
+                </ng-container>
+                <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.uscitaStraordinario || '-' }}</span>
+                </ng-container>
+              </td>
+              <td>
+                <ng-container *ngIf="editingRowId === giorno.id">
+                  <input type="text" [(ngModel)]="rowInEdit!.motivo" class="form-control form-control-sm p-1" />
+                </ng-container>
+                <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.motivo || '-' }}</span>
+                </ng-container>
+              </td>
+              <td>
+                <div class="d-grid gap-1">
+                  <button *ngIf="editingRowId !== giorno.id" (click)="editRow(giorno)" class="btn btn-outline-primary btn-sm py-1 px-2">
+                    <i class="bi bi-pencil"></i> Modifica
+                  </button>
+                  <button *ngIf="editingRowId === giorno.id" (click)="saveRow()" class="btn btn-success btn-sm py-1 px-2">
+                    <i class="bi bi-check-lg"></i> Salva
+                  </button>
+                  <button *ngIf="editingRowId === giorno.id" (click)="cancelEdit()" class="btn btn-secondary btn-sm py-1 px-2">
+                    <i class="bi bi-x-lg"></i> Annulla
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

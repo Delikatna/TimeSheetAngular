@@ -1,0 +1,226 @@
+/* Palette Colori (riadattata per un look più soft e professionale): */
+/* Primary Green: #28a745 (Standard Bootstrap success) */
+/* Light Green: #d4edda (Standard Bootstrap success background for alerts etc) */
+/* Dark Green Text: #155724 (Standard Bootstrap success text) */
+/* Medium Green: #4CAF50 (per bordi e accenti) */
+/* Table Header Background: #e9f5e9 (un verde molto tenue) */
+/* Card background: #FFFFFF (bianco puro per pulizia) */
+
+body {
+  background-color: #f0f2f5; /* Sfondo generale della pagina */
+}
+
+.container {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card principale */
+.card.custom-card-bg {
+  background-color: #FFFFFF; /* Sfondo bianco puro per la card */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Bordo discreto */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Ombra più pronunciata ma soft */
+}
+
+/* Titolo */
+h2.custom-heading {
+  color: #28a745; /* Verde Bootstrap per coerenza */
+  font-weight: 700;
+  border-bottom: 3px solid #28a745; /* Bordo sotto il titolo */
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+  letter-spacing: 0.5px;
+}
+
+/* Form - Label */
+form .form-label {
+  font-weight: 600;
+  color: #343a40; /* Grigio scuro per le label */
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Form - Input */
+input.form-control.custom-input {
+  border: 1px solid #ced4da; /* Bordo Bootstrap standard */
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fdfdfe; /* Leggermente off-white */
+}
+
+input.form-control.custom-input:focus {
+  outline: none;
+  border-color: #80bdff; /* Colore focus standard di Bootstrap o personalizzalo */
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Ombra focus standard di Bootstrap */
+}
+
+/* Pulsanti "Cerca" e "Scarica" */
+.btn.custom-btn,
+.btn.custom-btn-outline {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Bottone Cerca */
+.btn.custom-btn {
+  background-color: #28a745; /* Verde di successo Bootstrap */
+  color: white;
+  border-color: #28a745;
+}
+
+.btn.custom-btn:hover {
+  background-color: #218838; /* Verde più scuro all'hover */
+  border-color: #1e7e34;
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2); /* Ombra verde */
+}
+
+/* Bottone Scarica */
+.btn.custom-btn-outline {
+  background-color: transparent;
+  color: #28a745;
+  border: 1px solid #28a745; /* Bordo verde */
+}
+
+.btn.custom-btn-outline:hover {
+  background-color: #28a745; /* Riempimento verde all'hover */
+  color: white;
+  border-color: #28a745;
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+/* Contenitore tabella (per lo scroll) */
+.custom-table-wrapper {
+  /* Aumentato max-height per dare più spazio alla tabella prima dello scroll */
+  max-height: 400px; /* Puoi regolare questo valore (es. 60vh, 75vh) */
+  overflow-y: auto; /* Abilita lo scroll verticale */
+  overflow-x: hidden; /* Nasconde lo scroll orizzontale se non necessario qui */
+  border: 1px solid #e9ecef; /* Bordo molto chiaro */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Ombra sottile per la tabella */
+}
+
+/* Tabella */
+.custom-table {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Header della tabella */
+.custom-thead {
+  background-color: #e9f5e9; /* Un verde molto molto tenue */
+  color: #343a40; /* Testo grigio scuro per leggibilità */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.05); /* Ombra discreta */
+}
+
+.custom-thead th {
+  padding: 14px 10px;
+  font-weight: 600;
+  border-bottom: 2px solid #d4edda;
+  white-space: nowrap;
+}
+
+/* Righe del corpo tabella */
+.custom-table tbody td {
+  padding: 12px 10px;
+  border: 1px solid #f0f0f0;
+  color: #343a40;
+  font-size: 0.95rem;
+}
+
+/* Hover sulle righe */
+.custom-table tbody tr:hover {
+  background-color: #f8fcf8;
+}
+
+/* Input all'interno della tabella */
+.custom-table input.form-control-sm {
+  max-width: 140px;
+  margin: auto;
+  border: 1px solid #ced4da;
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 0.9rem;
+}
+
+.custom-table input.form-control-sm:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.2);
+}
+
+/* Pulsanti Azioni nella tabella */
+.btn.custom-action-btn {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+/* Icone nei bottoni */
+.custom-action-btn .bi {
+  margin-right: 6px;
+}
+
+/* Stili specifici per i bottoni di modifica, salva, annulla */
+.btn-outline-primary.custom-action-btn {
+  color: #28a745;
+  border-color: #28a745;
+  background-color: transparent;
+}
+.btn-outline-primary.custom-action-btn:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success.custom-action-btn {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+.btn-success.custom-action-btn:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-secondary.custom-action-btn {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+.btn-secondary.custom-action-btn:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Miglioramenti responsivi per la form */
+@media (max-width: 767.98px) {
+  .row.g-3.justify-content-center.align-items-end {
+    flex-direction: column;
+    align-items: center !important;
+  }
+  .col-auto {
+    width: 100%;
+  }
+  .col-auto.d-flex.gap-2 {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .custom-table-wrapper {
+  max-height: 50px; /* O un valore in vh, es. 70vh */
+  overflow-y: auto;  /* Questo è cruciale per lo scroll verticale */
+  overflow-x: hidden;
+  /* ... altri stili ... */
+}
+}

@@ -10,17 +10,24 @@ import { DatiUtenteComponent } from './componenti/dati-utente/dati-utente.compon
 import { ModificaUtenteComponent } from './componenti/modifica-utente/modifica-utente.component';
 import { StoricoComponent } from './componenti/logs/logs.component';
 import { StampaComponent } from './componenti/stampa/stampa.component';
+import { CommonModule } from '@angular/common'; // <-- 1. IMPORTA QUI
+import { TimesheetMensileComponent } from './componenti/timesheet-mensile/timesheet-mensile.component';
+import { AssenzaComponent } from './componenti/assenza/assenza.component';
+import { AccessoNonAutorizzatoComponent } from './componenti/non-autorizzato/non-autorizzato.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'timbratura', component: TimbraturaComponent, canActivate: [AuthGuard] },
-  { path: 'registrazione', component: RegistrazioneComponent, canActivate: [AuthGuard]  },
+  { path: 'registrazione', component: RegistrazioneComponent, canActivate: [AuthGuard], data: { roles: ['HR'] }  },
   { path: 'accesso-negato', component: AccessoNegatoComponent },
-  { path: 'logs', component: StoricoComponent, canActivate: [AuthGuard] },
+  { path: 'logs', component: StoricoComponent, canActivate: [AuthGuard], data: { roles: ['HR'] } },
   { path: 'welcome', component: WelcomeComponent },
+  { path: 'modifica-timesheet', component: TimesheetMensileComponent , canActivate: [AuthGuard], data: { roles: ['HR'] } },
   { path: 'dati-utente', component: DatiUtenteComponent, canActivate: [AuthGuard] },
-  { path: 'modifica-utente', component: ModificaUtenteComponent, canActivate: [AuthGuard] },
+  { path: 'modifica-utente', component: ModificaUtenteComponent, canActivate: [AuthGuard], data: { roles: ['HR'] } },
+  { path: 'motivi-assenza', component: AssenzaComponent, canActivate: [AuthGuard] },
   { path: 'stampa', component: StampaComponent, canActivate: [AuthGuard] },
+  { path: 'accesso-non-autorizzato', component: AccessoNonAutorizzatoComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
   

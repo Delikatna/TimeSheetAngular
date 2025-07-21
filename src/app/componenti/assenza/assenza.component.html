@@ -1,0 +1,35 @@
+<div class="container mt-5">
+
+  <!-- Caso: motivo ASSENZA -->
+  <div *ngIf="timeSheetId && puoGiustificare">
+    <h2 class="mb-3">Giustifica la tua assenza</h2>
+    <p class="mb-4">Per favore, seleziona uno dei seguenti motivi per procedere con la giustificazione.</p>
+
+    <div class="motivi-buttons d-grid gap-3">
+      <button
+        *ngFor="let motivo of motiviDisponibili"
+        (click)="selezionaMotivo(motivo)"
+        [disabled]="isLoading"
+        class="btn btn-primary straordinario-btn"
+      >
+        {{ motivo.replace('_', ' ') | titlecase }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Messaggi di caricamento -->
+  <div *ngIf="isLoading" class="feedback-message text-center mt-4">
+    <p class="text-info">⏳ Invio in corso...</p>
+  </div>
+
+  <!-- Messaggio di successo -->
+  <div *ngIf="messaggio" class="feedback-message success text-center mt-4">
+    <p class="text-success">{{ messaggio }}</p>
+  </div>
+
+  <!-- Messaggio di errore -->
+  <div *ngIf="errore" class="feedback-message error text-center mt-4">
+    <p class="text-danger">{{ errore }}</p>
+  </div>
+
+</div>

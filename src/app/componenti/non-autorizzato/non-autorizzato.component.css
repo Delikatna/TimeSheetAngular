@@ -1,0 +1,28 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6; /* bianco-grigio */
+  color: #333;
+  line-height: 1.6;
+  margin: 0; /* evita scroll indesiderati */
+  height: 100vh; /* usa tutta l’altezza */
+}
+
+.straordinario-btn {
+  background-color: #ff9800; /* arancione */
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: 0 auto; /* centra bottone */
+}
+
+.straordinario-btn:hover {
+  background-color: #cf7d02; /* arancione più scuro */
+  transform: translateY(-2px);
+}
