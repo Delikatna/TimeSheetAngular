@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { AuthRequest } from 'src/app/dto/auth-request-dto';
+import { StorageKeys } from 'src/app/model/StorageKey.model';
 
 @Component({
   selector: 'app-login',
@@ -19,17 +20,12 @@ export class LoginComponent {
 
   onSubmit() {
   this.authService.login(this.loginData).subscribe({
-    next: (response) => {
-      localStorage.setItem('token', response.accessToken);
-      localStorage.setItem('username', response.username);
-      localStorage.setItem('role', response.role);
-      localStorage.setItem('idUser', response.idUser.toString());
-
+    next: () => {
       this.errorMessage = null;
-      this.router.navigate(['/timbratura']);  // redirect al componente timbratura
+      this.router.navigate(['/timbratura']);
     },
     error: (err) => {
-      this.errorMessage = err.error || 'Errore di login';
+      this.errorMessage = err.error?.error || 'Errore di login';
     }
   });
 }

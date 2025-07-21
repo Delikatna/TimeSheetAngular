@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Motivo } from 'src/app/model/enum/motivo.model';
 import { TimeSheetGiornalieroDto } from 'src/app/model/TimeSheetGiornalieroDto.model';
 import { TimeSheetMensileDto } from 'src/app/model/TimeSheetMensileDto.model';
 import { TimesheetService } from 'src/app/services/timesheet.service';
@@ -14,6 +15,7 @@ export class TimesheetMensileComponent implements OnInit {
   timesheet: TimeSheetMensileDto | null = null;
   editingRowId: number | null = null;
   rowInEdit: TimeSheetGiornalieroDto | null = null;
+  motiviDisponibili: Motivo[] = Object.values(Motivo).filter(m => m !== Motivo.ASSENZA);
 
   messaggio: string = '';
   username: string = '';
@@ -116,5 +118,12 @@ export class TimesheetMensileComponent implements OnInit {
     }
   });
 }
+
+capitalizeMotivo(motivo: string | null): string {
+  if (!motivo) return '';
+  const formatted = motivo.toLowerCase().replace(/_/g, ' ');
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
+
 }
 

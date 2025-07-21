@@ -127,13 +127,19 @@
                 </ng-container>
               </td>
               <td>
-                <ng-container *ngIf="editingRowId === giorno.id">
-                  <input type="text" [(ngModel)]="rowInEdit!.motivo" class="form-control form-control-sm p-1" />
-                </ng-container>
-                <ng-container *ngIf="editingRowId !== giorno.id">
-                  <span>{{ giorno.motivo || '-' }}</span>
-                </ng-container>
-              </td>
+              <ng-container *ngIf="editingRowId === giorno.id">
+                <select [(ngModel)]="rowInEdit!.motivo" class="form-select form-select-sm p-1" [ngModelOptions]="{ standalone: true }">
+                  <option [ngValue]="null" disabled>-- Seleziona un motivo --</option>
+                  <option value="">-- Nessun motivo selezionato --</option>
+                  <option *ngFor="let motivo of motiviDisponibili" [ngValue]="motivo">
+                    {{ capitalizeMotivo(motivo) }}
+                  </option>
+                </select>
+              </ng-container>
+              <ng-container *ngIf="editingRowId !== giorno.id">
+                  <span>{{ giorno.motivo ? capitalizeMotivo(giorno.motivo) : '-' }}</span>
+              </ng-container>
+            </td>
               <td>
                 <div class="d-grid gap-1">
                   <button *ngIf="editingRowId !== giorno.id" (click)="editRow(giorno)" class="btn btn-outline-primary btn-sm py-1 px-2">

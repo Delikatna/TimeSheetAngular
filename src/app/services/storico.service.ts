@@ -10,7 +10,7 @@ import { StoricoTimbrature } from '../model/storico-timbrature';
 })
 export class StoricoService {
 
-  private baseUrl = '/api/storico-timbrature';  // modifica con il tuo endpoint
+  private baseUrl = '/api/storico-timbrature';
 
   constructor(private http: HttpClient) {}
 

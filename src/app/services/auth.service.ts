@@ -6,13 +6,13 @@ import { AuthRequest } from '../dto/auth-request-dto';
 import { AuthResponse } from '../dto/auth-response-dto';
 import { Route, Router } from '@angular/router';
 import { AnagraficaUtente } from '../model/anagrafica_utente.model';
+import { StorageKeys } from '../model/StorageKey.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8081/api/auth';
-  private apiHrUrl ='http://localhost:8081/api/hr'
   private authStatus = new BehaviorSubject<boolean>(this.isAuthenticated());
   
 
@@ -24,81 +24,67 @@ export class AuthService {
   this.authStatus.next(status);
 }
 
-  register(data: RegistrazioneDto): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
-    return this.http.post(`${this.apiHrUrl}/registrazione`, data, { headers });
-  }
-
-
+  
   login(credentials: AuthRequest): Observable<AuthResponse> {
   return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials).pipe(
     tap(response => {
-      localStorage.setItem('token', response.accessToken);
-      localStorage.setItem('username', response.username);
-      localStorage.setItem('role', response.role);
-      localStorage.setItem('idUser', response.idUser.toString());
-      
+      localStorage.setItem(StorageKeys.TOKEN, response.accessToken);
+      localStorage.setItem(StorageKeys.USERNAME, response.username);
+      localStorage.setItem(StorageKeys.ROLE, response.role);
+      localStorage.setItem(StorageKeys.ID_USER, response.idUser.toString());
 
-      this.setAuthStatus(true); 
-
-      this.router.navigate(['/']);
+      this.setAuthStatus(true);
     })
   );
 }
 
+
   logout(): void {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem(StorageKeys.TOKEN);
   this.clearSessionCompletely();
         this.setAuthStatus(false);
         this.router.navigate(['/welcome']);
 }
 
 private clearSessionCompletely(): void {
-  // Pulisce tutto il localStorage
   localStorage.clear();
-
-  // Se si usa il sessionStorage
   sessionStorage.clear();
 }
 
 isAuthenticated(): boolean {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem(StorageKeys.TOKEN);
   if (!token) return false;
 
   try {
     const payload = JSON.parse(atob(token.split('.')[1]));
-    const expiry = payload.exp * 1000; 
+    const expiry = payload.exp * 1000;
     return Date.now() < expiry;
   } catch (e) {
     return false;
   }
 }
 
+  getToken(): string | null {
+    return localStorage.getItem(StorageKeys.TOKEN);
+  }
+
+  getRole(): string {
+    return localStorage.getItem(StorageKeys.ROLE) || '';
+  }
 
   getUsername(): string {
-    return localStorage.getItem('username') || '';
+    return localStorage.getItem(StorageKeys.USERNAME) || '';
   }
 
   getUserIdFromToken() : string {
-    return localStorage.getItem('idUser') || ''
+    return localStorage.getItem(StorageKeys.ID_USER) || ''
   }
   
   hasRole(role: string): boolean {
-  const ruolo = localStorage.getItem('role');
+  const ruolo = this.getRole();
   return ruolo === role;
 }
 
-  modificaAnagrafe(data: AnagraficaUtente, id: number): Observable<string> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
-    return this.http.post(`${this.apiHrUrl}/aggiorna/${id}`, data, { headers, responseType: 'text' }); //text perché la modifica si aspetta un testo e non un JSON
-  }
-
-  prendiTutteAnagrafe(): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization',`Bearer ${token}`);
-    return this.http.get(`${this.apiHrUrl}/tutte`, { headers });
-  }
+  
   
 }

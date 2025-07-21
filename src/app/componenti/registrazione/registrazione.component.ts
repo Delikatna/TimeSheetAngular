@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RegistrazioneDto } from 'src/app/dto/registrazione-dto';
 import { AuthService } from 'src/app/services/auth.service';
+import { HrService } from 'src/app/services/hr.service';
  
  
 @Component({
@@ -28,10 +29,10 @@ export class RegistrazioneComponent {
     }
   };
  
-  constructor(private authService: AuthService) {}
+  constructor(private hrService: HrService) {}
  
   onSubmit() {
-    this.authService.register(this.registrazioneData).subscribe({
+    this.hrService.registrazione(this.registrazioneData).subscribe({
       next: res => alert('Registrazione avvenuta con successo'),
       error: err => alert('Errore: ' + err.error?.error || err.message)
     });

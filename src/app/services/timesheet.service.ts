@@ -15,6 +15,7 @@ import { TimeSheetGiornalieroDto } from '../model/TimeSheetGiornalieroDto.model'
 export class TimesheetService {
   
   private apiUrl = 'http://localhost:8080/api/excel';
+
   private modificaUrl = 'http://localhost:8080/api/modifica';
 
   constructor(private http: HttpClient) { }
@@ -51,9 +52,9 @@ aggiornaRigaGiornaliera(id: number, aggiornato: Partial<TimeSheetGiornalieroDto>
   const token = localStorage.getItem('token');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-  return this.http.post(`${this.apiUrl}/giornaliero/${id}`, aggiornato, {
+  return this.http.post(`${this.modificaUrl}/giornaliero/${id}`, aggiornato, {
     headers,
-    responseType: 'text'  // 👈 Questo dice ad Angular che riceverà un testo, non JSON
+    responseType: 'text'
   });
 }
 
@@ -63,14 +64,13 @@ downloadTimesheetById(id: number): Observable<Blob> {
 
   return this.http.get(`${this.apiUrl}/download/${id}`, { headers, responseType: 'blob' });
 }
-
+  
  modificaAssenza(id: number, motivo: Motivo): Observable<string> {
   const url = `${this.modificaUrl}/${id}/motivo`;
   const params = new HttpParams().set('motivo', motivo);
   const token = localStorage.getItem('token');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-  // Passa null come body, motivo come query param, e specifica responseType
   return this.http.post(url, null, { params, headers, responseType: 'text' });
 }
 

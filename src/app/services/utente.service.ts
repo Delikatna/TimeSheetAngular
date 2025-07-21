@@ -12,8 +12,8 @@ export class UtenteService {
   constructor(private http:HttpClient) { }
 
   private apiUrl='http://localhost:8081/api/public';
-  private apiUtenteUrl = 'http://localhost:8081/api/utente';
-  private utenteUrl = 'http://localhost:8080/api/utente';
+  private apiUtenteUrl = 'http://localhost:8081/api/utente'; //dati utente
+  private utenteUrl = 'http://localhost:8080/api/utente'; //nome e cognome
 
   getUtenteById(id: string): Observable<AnagraficaUtente> {
   const token = localStorage.getItem('token') || '';

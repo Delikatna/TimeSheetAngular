@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtenteEAnagraficaDto } from 'src/app/dto/UtenteEAnagraficaDto';
-import { AnagraficaUtente } from 'src/app/model/anagrafica_utente.model';
 import { Mansione } from 'src/app/model/enum/mansione';
-import { AuthService } from 'src/app/services/auth.service';
+import { HrService } from 'src/app/services/hr.service';
 import { UtenteService } from 'src/app/services/utente.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class ModificaUtenteComponent implements OnInit{
   mansioniDisponibili: string[] = Object.values(Mansione);
 
 
-  constructor(private authService: AuthService, private utenteService: UtenteService) {}
+  constructor(private hrService: HrService, private utenteService: UtenteService) {}
   
   ngOnInit(): void {
     this.caricaTuttiGliUtenti();
@@ -27,7 +26,7 @@ export class ModificaUtenteComponent implements OnInit{
 
 
   caricaTuttiGliUtenti(): void {
-    this.authService.prendiTutteAnagrafe().subscribe({
+    this.hrService.prendiTutteAnagrafe().subscribe({
       next: (data) => {
         this.utenti = data;
         this.utentiFiltrati = data;
@@ -53,7 +52,7 @@ export class ModificaUtenteComponent implements OnInit{
 
   salvaModifica(): void {
     if(this.utenteSelezionato) {
-      this.authService.modificaAnagrafe(this.utenteSelezionato, this.utenteSelezionato.id).subscribe({
+      this.hrService.modificaAnagrafe(this.utenteSelezionato, this.utenteSelezionato.id).subscribe({
         next: () => {
           console.log('Modifica salavata');
           alert('Anagrafica utente aggiornata');
