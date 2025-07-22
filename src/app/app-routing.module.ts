@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common'; // <-- 1. IMPORTA QUI
 import { TimesheetMensileComponent } from './componenti/timesheet-mensile/timesheet-mensile.component';
 import { AssenzaComponent } from './componenti/assenza/assenza.component';
 import { AccessoNonAutorizzatoComponent } from './componenti/non-autorizzato/non-autorizzato.component';
+import { PaginaNonTrovataComponent } from './componenti/pagina-non-trovata/pagina-non-trovata.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'stampa', component: StampaComponent, canActivate: [AuthGuard] },
   { path: 'accesso-non-autorizzato', component: AccessoNonAutorizzatoComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+  { path: '**',component:PaginaNonTrovataComponent }
   
 ];
 

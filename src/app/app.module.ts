@@ -26,6 +26,7 @@ import { TimesheetMensileComponent } from './componenti/timesheet-mensile/timesh
 import { AssenzaComponent } from './componenti/assenza/assenza.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
+import { PaginaNonTrovataComponent } from './componenti/pagina-non-trovata/pagina-non-trovata.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatInputModule } from '@angular/material/input';
     StampaComponent,
     TimesheetMensileComponent,
     AssenzaComponent,
+    PaginaNonTrovataComponent,
   ],
   imports: [
     BrowserModule,
